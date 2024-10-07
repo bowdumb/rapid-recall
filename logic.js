@@ -1,7 +1,8 @@
 const flashCard = document.getElementById("flash-card");
 const startButton = document.getElementById("start-button");
 const cardText = document.getElementById("card-text");
-let cardQuestion = cardText.innerText;
+let questionText = "";
+
 const cardArr = [
     {
         question: "What are the three components of a traditional for loop?",
@@ -36,8 +37,6 @@ startButton.addEventListener('click', () => {
     if (flashCard.style.display === 'none') {
         flashCard.style.display = 'block';
         randomQuestion(cardArr);
-    } else {
-        return;
     }
 
 });
@@ -48,5 +47,5 @@ const randomQuestion = (cardArr) => {
     console.log(randomIndex);
     cardQuestion = cardArr[randomIndex].question;
     console.log(cardQuestion);
-    cardText.innnerHTML += `<p>${cardQuestion}</p>`;
+    cardText.textContent = cardQuestion;
 }
