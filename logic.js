@@ -1,6 +1,6 @@
-const flashCard = document.getElementById("flash-card");
-const startButton = document.getElementById("start-button");
-const cardText = document.getElementById("card-text");
+const questionContainer = document.getElementById("flash-card-question");
+const questionOptions = document.getElementById("question-options");
+const startButton = document.getElementById("submit-btn");
 let questionText = "";
 
 const cardArr = [
@@ -24,18 +24,21 @@ const cardArr = [
             [
                 { label: "A", text: "It removes the last element from an array and returns that element." }, 
                 { label: "B", text: "It adds one or more elements to the beginning of an array and returns the new length of the array." },
-                { label: "B", text: "It adds one or more elements to the end of an array and returns the new length of the array." },
-                { label: "C", text: "It merges two or more arrays into a single array and returns the new combined array." }
-        ]
+                { label: "C", text: "It adds one or more elements to the end of an array and returns the new length of the array." },
+                { label: "D", text: "It merges two or more arrays into a single array and returns the new combined array." }
+        ],
+
+        correctAnswerIndex: 2
     }
 ];
 
+const { question, options, correctAnswerIndex } = cardArr;
 
 
 startButton.addEventListener('click', () => {
-    flashCard.style.display = 'none';
-    if (flashCard.style.display === 'none') {
-        flashCard.style.display = 'block';
+    questionContainer.style.display = 'none';
+    if (questionContainer.style.display === 'none') {
+        questionContainer.style.display = 'block';
         randomQuestion(cardArr);
     }
 
@@ -44,8 +47,45 @@ startButton.addEventListener('click', () => {
 
 const randomQuestion = (cardArr) => {
     randomIndex = Math.floor(Math.random() * cardArr.length);
-    console.log(randomIndex);
     cardQuestion = cardArr[randomIndex].question;
-    console.log(cardQuestion);
-    cardText.textContent = cardQuestion;
+    cardOptions = cardArr[randomIndex].options;
+    
+
+    questionContainer.textContent = cardQuestion;
+    questionOptions.innerHTML = `${cardOptions}`;
+    console.log(cardOptions);
+
+
+    questionOptions.innerHTML = '';
+
+    // forEach loop iterates through the cardOptions array of answers for the user to choose from.
+    cardOptions.forEach((option) => {
+        // Create a new <div> element to render the options within.
+        const optionContainer = document.createElement('div');
+        // Create the <li> element that will accompany each option.
+        const optionText = document.createElement('p');
+        // Sets the content of optionText to display the label and text from the current option using string interpolation.
+        optionText.textContent = `${option.label}: ${option.text}`;
+        //Appends the optionText to the optionContainer <div>, and the optionContainer within the questionContainer element.
+
+        const answerInput = document.createElement('input');
+        answerInput.type = 'radio';
+        answerInput.name = 'answer-option';
+        answerInput.value = option.label;
+        answerInput.id = `option-${option.label}`;
+
+        optionContainer.appendChild(optionText);
+        questionContainer.appendChild(optionContainer);
+        questionContainer.appendChild(answerInput);
+
+
+    })
+
+
+   
 }
+
+ // cardOptions.forEach(({ label, text  }) => {
+    //     const optionEl = document.createElement('div');
+    //     optionEl.classList.add('option');
+    // });
