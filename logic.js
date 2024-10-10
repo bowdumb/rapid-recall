@@ -15,7 +15,7 @@ const cardArr = [
                 { label: "D", text: "The Initialization Phase, the Processing Phase, and the Termination Phase" }
             ],
         
-        correctAnswerIndex: 0
+        correctAnswerLabel: "A"
     },
     {
         question: "What does Array.prototype.push() do?",
@@ -28,7 +28,7 @@ const cardArr = [
                 { label: "D", text: "It merges two or more arrays into a single array and returns the new combined array." }
         ],
 
-        correctAnswerIndex: 2
+        correctAnswerLabel: "C"
     }
 ];
 
@@ -40,6 +40,7 @@ startButton.addEventListener('click', () => {
     if (questionContainer.style.display === 'none') {
         questionContainer.style.display = 'block';
         randomQuestion(cardArr);
+        startButton.textContent = "Submit";
     }
 
 });
@@ -47,13 +48,12 @@ startButton.addEventListener('click', () => {
 
 const randomQuestion = (cardArr) => {
     randomIndex = Math.floor(Math.random() * cardArr.length);
-    cardQuestion = cardArr[randomIndex].question;
-    cardOptions = cardArr[randomIndex].options;
+    let cardQuestion = cardArr[randomIndex].question;
+    let cardOptions = cardArr[randomIndex].options;
     
 
     questionContainer.textContent = cardQuestion;
     questionOptions.innerHTML = `${cardOptions}`;
-    console.log(cardOptions);
 
 
     questionOptions.innerHTML = '';
@@ -66,7 +66,7 @@ const randomQuestion = (cardArr) => {
         const optionText = document.createElement('p');
         // Sets the content of optionText to display the label and text from the current option using string interpolation.
         optionText.textContent = `${option.label}: ${option.text}`;
-        //Appends the optionText to the optionContainer <div>, and the optionContainer within the questionContainer element.
+        
 
         const answerInput = document.createElement('input');
         answerInput.type = 'radio';
@@ -74,6 +74,10 @@ const randomQuestion = (cardArr) => {
         answerInput.value = option.label;
         answerInput.id = `option-${option.label}`;
 
+    
+
+        // Appends the optionText to the optionContainer <div>, and the optionContainer within the questionContainer element in addition to creating
+        // the radio inputs for user selection.
         optionContainer.appendChild(optionText);
         questionContainer.appendChild(optionContainer);
         questionContainer.appendChild(answerInput);
