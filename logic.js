@@ -1,7 +1,11 @@
 const questionContainer = document.getElementById("flash-card-question");
 const questionOptions = document.getElementById("question-options");
 const startButton = document.getElementById("submit-btn");
-let questionText = "";
+const correctScoreElement = document.getElementById("correct-score");
+const newBtn = document.getElementById("new-btn");
+const submitButton = document.createElement('button');
+let correctScore = 0;
+let wrongScore = 0;
 
 const cardArr = [
     {
@@ -32,7 +36,7 @@ const cardArr = [
     }
 ];
 
-const { question, options, correctAnswerIndex } = cardArr;
+// const { question, options, correctAnswerIndex } = cardArr;
 
 
 startButton.addEventListener('click', () => {
@@ -40,11 +44,27 @@ startButton.addEventListener('click', () => {
     if (questionContainer.style.display === 'none') {
         questionContainer.style.display = 'block';
         randomQuestion(cardArr);
-        startButton.textContent = "Submit";
-    }
+        startButton.style.display = 'none';
 
+        submitButton.type = 'submit';
+        submitButton.textContent = "Submit";
+        newBtn.appendChild(submitButton);
+    } 
 });
 
+submitButton.addEventListener('submit', () => {
+    if (answerInput.value === correctAnswerLabel) {
+        correctScore ++;
+        correctScoreElement.textContent = `Score: ${correctScore}`;
+        randomQuestion(cardArr);
+        console.log(correctScore);
+    } else {
+        wrongScore ++;
+        randomQuestion(cardArr);
+    }
+    console.log(correctScore);
+    console.log(wrongScore);
+})
 
 const randomQuestion = (cardArr) => {
     randomIndex = Math.floor(Math.random() * cardArr.length);
@@ -93,3 +113,4 @@ const randomQuestion = (cardArr) => {
     //     const optionEl = document.createElement('div');
     //     optionEl.classList.add('option');
     // });
+
