@@ -38,7 +38,7 @@ const cardArr = [
     }
 ];
 
-// const { question, options, correctAnswerIndex } = cardArr;
+const { question, options, correctAnswerIndex } = cardArr;
 
 
 startButton.addEventListener('click', () => {
@@ -64,7 +64,7 @@ const randomQuestion = (cardArr) => {
     let cardQuestion = cardArr[randomIndex].question;
     let cardOptions = cardArr[randomIndex].options;
     
-
+    questionContainer.textContent = "";
     questionContainer.textContent = cardQuestion;
     questionOptions.innerHTML = `${cardOptions}`;
 
@@ -94,8 +94,8 @@ const randomQuestion = (cardArr) => {
 
             answerOptions.forEach(option => {
                 if (option.checked) {
-                    selectedAnswer = answerOptions.value;
-                    console.log(submitButton);
+                    selectedAnswer = option.value;
+                    console.log(selectedAnswer);
                 }
             })
 
@@ -103,12 +103,12 @@ const randomQuestion = (cardArr) => {
                 correctScore ++;
                 correctScoreElement.textContent = `Score: ${correctScore}`;
                 randomQuestion(cardArr);
+
                 
             } else {
                 wrongScore ++;
                 randomQuestion(cardArr);
             }
-            console.log(correctScore);
         });
 
         // Appends the optionText to the optionContainer <div>, and the optionContainer within the questionContainer element in addition to creating
