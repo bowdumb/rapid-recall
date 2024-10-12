@@ -1,9 +1,11 @@
 const questionContainer = document.getElementById("flash-card-question");
 const questionOptions = document.getElementById("question-options");
-const startButton = document.getElementById("submit-btn");
+const startButton = document.getElementById("start-btn");
 const correctScoreElement = document.getElementById("correct-score");
-const newBtn = document.getElementById("new-btn");
+const newBtnDiv = document.getElementById("new-btn");
 const submitButton = document.createElement('button');
+const answerSubmit = document.getElementById('submit-btn')
+
 let correctScore = 0;
 let wrongScore = 0;
 
@@ -47,24 +49,15 @@ startButton.addEventListener('click', () => {
         startButton.style.display = 'none';
 
         submitButton.type = 'submit';
+        submitButton.id = 'submit-btn';
         submitButton.textContent = "Submit";
-        newBtn.appendChild(submitButton);
-    } 
+        newBtnDiv.appendChild(submitButton);
+    }
 });
 
-submitButton.addEventListener('submit', () => {
-    if (answerInput.value === correctAnswerLabel) {
-        correctScore ++;
-        correctScoreElement.textContent = `Score: ${correctScore}`;
-        randomQuestion(cardArr);
-        console.log(correctScore);
-    } else {
-        wrongScore ++;
-        randomQuestion(cardArr);
-    }
-    console.log(correctScore);
-    console.log(wrongScore);
-})
+    
+        
+
 
 const randomQuestion = (cardArr) => {
     randomIndex = Math.floor(Math.random() * cardArr.length);
@@ -90,11 +83,33 @@ const randomQuestion = (cardArr) => {
 
         const answerInput = document.createElement('input');
         answerInput.type = 'radio';
-        answerInput.name = 'answer-option';
+        answerInput.name = 'answer-options';
         answerInput.value = option.label;
         answerInput.id = `option-${option.label}`;
 
-    
+        submitButton.addEventListener('click', () => {
+            const answerOptions = document.getElementsByName('answer-options')
+
+            let selectedAnswer = "";
+
+            answerOptions.forEach(option => {
+                if (option.checked) {
+                    selectedAnswer = answerOptions.value;
+                    console.log(submitButton);
+                }
+            })
+
+            if (selectedAnswer === cardArr[randomIndex].correctAnswerLabel) {
+                correctScore ++;
+                correctScoreElement.textContent = `Score: ${correctScore}`;
+                randomQuestion(cardArr);
+                
+            } else {
+                wrongScore ++;
+                randomQuestion(cardArr);
+            }
+            console.log(correctScore);
+        });
 
         // Appends the optionText to the optionContainer <div>, and the optionContainer within the questionContainer element in addition to creating
         // the radio inputs for user selection.
@@ -104,6 +119,8 @@ const randomQuestion = (cardArr) => {
 
 
     })
+
+
 
 
    
