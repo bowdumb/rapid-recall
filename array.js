@@ -19,7 +19,8 @@ const cardArr = [
                 text: "The Declaration Statement, the Execution Block, and the Iteration Variable"
             }
         ],
-        correctAnswerLabel: "B"
+        correctAnswerLabel: "B",
+        mdn: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for"
     },
     {
         question: "What does Array.prototype.push() do?",
@@ -41,7 +42,8 @@ const cardArr = [
                 text: "It adds one or more elements to the beginning of an array and returns the new length of the array."
             }
         ],
-        correctAnswerLabel: "A"
+        correctAnswerLabel: "A",
+        mdn: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push"
     },
     {
         question: "What does Array.prototype.shift() do?",
@@ -63,7 +65,8 @@ const cardArr = [
                 text: "It sorts the elements of an array in place and returns the sorted array."
             }
         ],
-        correctAnswerLabel: "C"
+        correctAnswerLabel: "C",
+        mdn: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift"
     },
     {
         question: "What does Array.prototype.unshift() do?",
@@ -85,7 +88,8 @@ const cardArr = [
                 text: "It adds one or more elements to the beginning of an array and returns the new length of the array."
             }
         ],
-        correctAnswerLabel: "D"
+        correctAnswerLabel: "D",
+        mdn: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift"
     },
     {
         question: "What does Array.prototype.pop() do?",
@@ -107,7 +111,8 @@ const cardArr = [
                 text: "It adds one or more elements to the end of an array and returns the new length of the array."
             }
         ],
-        correctAnswerLabel: "A"
+        correctAnswerLabel: "A",
+        mdn: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop"
     },
     {
         question: "What is a multi-dimensional array?",

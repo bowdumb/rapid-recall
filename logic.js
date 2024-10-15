@@ -5,8 +5,8 @@ const startButton = document.getElementById("start-btn");
 const scoreElement = document.getElementById("correct-score");
 const newBtnDiv = document.getElementById("new-btn");
 const submitButton = document.createElement('button');
-const answerSubmit = document.getElementById('submit-btn')
-
+// const answerSubmit = document.getElementById('submit-btn')
+let lastCard;
 let randomIndex;
 let correctScore = 0;
 let wrongScore = 0;
@@ -58,6 +58,7 @@ const randomQuestion = (cardArr) => {
         optionContainer.appendChild(optionText);
         questionContainer.appendChild(optionContainer);
         questionContainer.appendChild(answerInput);
+        
     })
 };
 
@@ -69,7 +70,6 @@ submitButton.addEventListener('click', () => {
     answerOptions.forEach(option => {
         if (option.checked) {
             selectedAnswer = option.value;
-            console.log(selectedAnswer);
         }
     });
 
@@ -80,7 +80,7 @@ submitButton.addEventListener('click', () => {
     } else if (selectedAnswer !== cardArr[randomIndex].correctAnswerLabel) {
         wrongScore++;
         scoreElement.textContent = `Correct: ${correctScore}     Incorrect: ${wrongScore}`;
+        alert(`The correct answer is ${cardArr[randomIndex].correctAnswerLabel}`);
         randomQuestion(cardArr);
     }
 });
-
