@@ -1,3 +1,17 @@
 #flash-card {
     display: none;
 }
+
+.new-question-answer {
+    width: 50%;
+}
+
+.input-pair {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-pair label {
+    margin-right: 10px;
+}
