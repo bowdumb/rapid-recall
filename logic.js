@@ -80,7 +80,7 @@ submitButton.addEventListener('click', () => {
     } else if (selectedAnswer !== cardArr[randomIndex].correctAnswerLabel) {
         wrongScore++;
         scoreElement.textContent = `Correct: ${correctScore}     Incorrect: ${wrongScore}`;
-        alert(`The correct answer is ${cardArr[randomIndex].correctAnswerLabel}`);
+        alert(`The correct answer is "${cardArr[randomIndex].correctAnswerLabel}"`);
         randomQuestion(cardArr);
     }
 });
